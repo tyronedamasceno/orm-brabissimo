@@ -18,3 +18,20 @@ class Onibus(models.Model):
     marca = models.CharField(max_length=100)
     ano = models.IntegerField()
     empresa = models.CharField(max_length=100)
+
+    def __str__(self) -> str:
+        return self.placa
+
+
+class Classe(models.Model):
+    class TipoAssento(models.TextChoices):
+        EXECUTIVO = 'EXECUTIVO'
+        SEMI_LEITO = 'SEMI_LEITO'
+        LEITO = 'LEITO'
+        CAMA = 'CAMA'
+        CAMA_PREMIUM = 'CAMA_PREMIUM'
+
+    tipo = models.CharField(max_length=50, choices=TipoAssento.choices)
+    vagas = models.IntegerField()
+    preco = models.DecimalField(max_digits=10, decimal_places=2)
+    viagem = models.ForeignKey("core.Viagem", on_delete=models.SET_NULL, null=True)
