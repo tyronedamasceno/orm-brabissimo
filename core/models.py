@@ -21,7 +21,7 @@ class Empresa(models.Model):
     endereco = models.CharField(max_length=100)
 
     def __str__(self) -> str:
-        return self.name
+        return self.nome
 
 
 class Onibus(models.Model):
